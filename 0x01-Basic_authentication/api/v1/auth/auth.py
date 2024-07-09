@@ -2,7 +2,10 @@
 """
 Module for AUTH class
 """
+from flask import request
 from typing import List, TypeVar
+
+User = TypeVar('User')
 
 
 class Auth:
@@ -34,7 +37,7 @@ class Auth:
         #     return None
 
         # return auth
-        return False
+        return None
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
