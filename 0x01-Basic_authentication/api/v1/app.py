@@ -18,18 +18,18 @@ if auth_type == "auth":
     auth = Auth()
 
 
-@app.before_request
-def before_request():
-    if auth:
-        excluded_paths = ['/api/v1/status/',
-                          '/api/v1/unauthorized/',
-                          '/api/v1/forbidden/']
+# @app.before_request
+# def before_request():
+#     if auth:
+#         excluded_paths = ['/api/v1/status/',
+#                           '/api/v1/unauthorized/',
+#                           '/api/v1/forbidden/']
 
-        if auth.require_auth(request.path, excluded_paths):
-            if not auth.authorization_header(request):
-                return abort(401)
-            elif not auth.current_user(request):
-                return abort(403)
+#         if auth.require_auth(request.path, excluded_paths):
+#             if not auth.authorization_header(request):
+#                 return abort(401)
+#             elif not auth.current_user(request):
+#                 return abort(403)
 
 
 @app.errorhandler(404)
