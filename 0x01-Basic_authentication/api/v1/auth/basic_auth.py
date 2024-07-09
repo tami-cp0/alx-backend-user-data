@@ -5,6 +5,7 @@ Module for BasicAUTH class
 from api.v1.auth.auth import Auth
 import base64
 
+
 class BasicAuth(Auth):
     """
     Basic authentication class.
@@ -22,11 +23,13 @@ class BasicAuth(Auth):
             return None
 
         return authorization_header.split(' ')[1]
-    
-    def decode_base64_authorization_header(self,
-                                           base64_authorization_header: str) -> str:
+
+    def decode_base64_authorization_header(
+        self, base64_authorization_header: str
+    ) -> str:
         """
-        Returns the decoded value of a Base64 string in base64_authorization_header
+        Returns the decoded value of a Base64 string in
+        base64_authorization_header
         """
         if (
             not base64_authorization_header
