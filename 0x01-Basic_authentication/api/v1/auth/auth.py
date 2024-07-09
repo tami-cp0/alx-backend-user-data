@@ -13,14 +13,12 @@ class Auth:
         """
         Check which routes don't need authentication
         """
-        if not (path or excluded_paths):
-            return True
+        if path and excluded_paths:
+            if path[-1] != '/':
+                path += '/'
 
-        if path[-1] != '/':
-            path += '/'
-
-        if path in excluded_paths:
-            return False
+            if path in excluded_paths:
+                return False
 
         return True
 
