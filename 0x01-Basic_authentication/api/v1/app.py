@@ -18,20 +18,6 @@ if auth_type == "auth":
     auth = Auth()
 
 
-# @app.before_request
-# def before_request():
-#     if auth:
-#         excluded_paths = ['/api/v1/status/',
-#                           '/api/v1/unauthorized/',
-#                           '/api/v1/forbidden/']
-
-#         if auth.require_auth(request.path, excluded_paths):
-#             if not auth.authorization_header(request):
-#                 return abort(401)
-#             elif not auth.current_user(request):
-#                 return abort(403)
-
-
 @app.errorhandler(404)
 def not_found(error) -> str:
     """ Not found handler
@@ -51,6 +37,24 @@ def forbidden(error) -> str:
     """ Forbidden
     """
     return jsonify({"error": "Forbidden"}), 403
+
+
+@app.before_request
+def before_request():
+    """
+    checks if authentication is required for the current path
+    and if the Authorization header is present
+    """
+    if auth:
+        excluded_paths = ['/api/v1/status/',
+                          '/api/v1/unauthorized/',
+                          '/api/v1/forbidden/']
+
+        if auth.require_auth(request.path, excluded_paths):
+            if not auth.authorization_header(request):
+                return abort(401)
+            elif not auth.current_user(request):
+                return abort(403)
 
 
 if __name__ == "__main__":
