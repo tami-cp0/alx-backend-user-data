@@ -45,11 +45,11 @@ def unauthorized(error) -> str:
     return jsonify({"error": "Unauthorized"}), 401
 
 
-# @app.errorhandler(403)
-# def forbidden(error) -> str:
-#     """ Forbidden
-#     """
-#     return jsonify({"error": "Forbidden"}), 401
+@app.errorhandler(403)
+def forbidden(error) -> str:
+    """ Forbidden
+    """
+    return jsonify({"error": "Forbidden"}), 401
 
 
 if __name__ == "__main__":

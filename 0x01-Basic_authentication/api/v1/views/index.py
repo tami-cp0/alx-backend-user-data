@@ -34,9 +34,9 @@ def test_unauthorized():
     return abort(401)
 
 
-# @app_views.route('/forbidden', methods=['GET'], strict_slashes=False)
-# def test_forbidden():
-#     """
-#     Test the return of 403 error
-#     """
-#     return abort(403)
+@app_views.route('/forbidden', methods=['GET'], strict_slashes=False)
+def test_forbidden():
+    """
+    Test the return of 403 error
+    """
+    return abort(403)
