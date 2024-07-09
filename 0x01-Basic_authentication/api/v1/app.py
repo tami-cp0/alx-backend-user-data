@@ -7,6 +7,7 @@ from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
 from api.v1.auth.auth import Auth
+from api.v1.auth.basic_auth import BasicAuth
 
 
 app = Flask(__name__)
@@ -16,6 +17,8 @@ auth = None
 auth_type = getenv('AUTH_TYPE', None)
 if auth_type == "auth":
     auth = Auth()
+elif auth_type == "basic_auth":
+    auth = BasicAuth()
 
 
 @app.errorhandler(404)
@@ -42,7 +45,7 @@ def forbidden(error) -> str:
 @app.before_request
 def before_request():
     """
-    checks if authentication is required for the current path
+    Checks if authentication is required for the current path
     and if the Authorization header is present
     """
     if auth:
