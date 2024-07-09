@@ -5,10 +5,10 @@ Module for AUTH class
 from flask import request
 from typing import List, TypeVar
 
-User = TypeVar('User')
-
 
 class Auth:
+    """Authentication class.
+    """
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """
         Will be fully implemented later
