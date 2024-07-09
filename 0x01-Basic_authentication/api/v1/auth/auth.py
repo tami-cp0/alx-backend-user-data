@@ -26,14 +26,12 @@ class Auth:
         """
         Checks if Authorization header is present.
         """
-        if not request:
-            return None
+        if request:
+            auth = request.headers.get("Authorization", None)
+            if auth:
+                return auth
 
-        auth = request.headers.get("Authorization", None)
-        if not auth:
-            return None
-
-        return auth
+        return None
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
