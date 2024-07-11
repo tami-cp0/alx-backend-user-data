@@ -21,10 +21,10 @@ class Auth:
                 if p[-1] != "*":
                     if path == p:
                         return False
-                    if path[0:-2] == p:
+                    if path[0:-1] == p:
                         return False
                 else:
-                    if p[0:-2] in path:
+                    if p[0:-1] in path:
                         return False
 
         return True
