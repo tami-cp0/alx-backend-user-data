@@ -75,7 +75,7 @@ class BasicAuth(Auth):
         """
         Returns the User instance based on his email and password.
         """
-        if type(user_email) == str and type(user_pwd) == str:
+        if type(user_email) is str and type(user_pwd) is str:
             try:
                 users = User.search({'email': user_email})
             except Exception:
@@ -92,11 +92,10 @@ class BasicAuth(Auth):
         """
         auth_header = self.authorization_header(request)
         if auth_header:
-            base64_credentials = self.extract_base64_authorization_header(auth_header)
-            decoded_credentials = self.decode_base64_authorization_header(base64_credentials)
-            email, password = self.extract_user_credentials(decoded_credentials)
-            user = self.user_object_from_credentials(email, password)
+            base64_cred = self.extract_base64_authorization_header(auth_header)
+            decoded_cred = self.decode_base64_authorization_header(base64_cred)
+            email, pwd = self.extract_user_credentials(decoded_cred)
+            user = self.user_object_from_credentials(email, pwd)
             return user
-        
+
         return None
-            
