@@ -66,7 +66,7 @@ class Base():
         DATA[s_class] = {}
         if not path.exists(file_path):
             return
-
+ 
         with open(file_path, 'r') as f:
             objs_json = json.load(f)
             for obj_id, obj_json in objs_json.items():
