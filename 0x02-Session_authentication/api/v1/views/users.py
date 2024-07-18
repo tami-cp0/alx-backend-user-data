@@ -131,4 +131,3 @@ def update_user(user_id: str = None) -> str:
 
 # @app_views.route('/users/me', methods=['GET'], strict_slashes=False)
 # def get_user():
-    
